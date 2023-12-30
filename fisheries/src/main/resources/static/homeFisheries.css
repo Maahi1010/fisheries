@@ -1,119 +1,134 @@
-body {
-	font-family: Arial, Helvetica, sans-serif;
+:root {
+    --primary-color: #686ed0;
+    --secondary-color: #434794;
+    --font-color: #000;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--primary-color);
+    color: var(--font-color);
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container-fluid {
+    width: 80%;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 0;
+    border-radius: 10px;
+    /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1); */
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    /* box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: var(--secondary-color);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 40px;
+}
+
+#head-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#main-icon {
+    font-size: 1em;
+}
+
+a {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 
 form {
-	border-radius: 5px;
-	background-color: #f2f2f2;
-	margin: 5px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
 }
 
-.btndiv {
-	width: 100%
+#totalKRM,#totalKRMWt,
+#totalMinor,#totalMinorWt,
+#totalLocalMaj,#totalLocalMajWt,
+#grandTotal,#grandTotalWt {
+    border: 2px solid #000;
 }
 
-button {
-	width: 49%;
+.container-footer {
+    background-color: var(--secondary-color);
+    color: #fff;
+    display: flex;
 }
 
-#signInForm :has(input[type=text], input[type=password], input[type=email],
-	input[type=number], input[type=date] ) {
-	border: 1px solid #ccc;
-	box-sizing: border-box;
-	border-radius: 0.2em;
+#form-buttons {
+    margin-left: auto;
+    padding: 0.75em 1em;
 }
 
-.heading {
-	background-color: #f44336;
-	color: white;
-	width: 40%;
-	display: inline-block;
-	text-align: center;
-	margin: 0 auto;
+#form-buttons button {
+    margin-left: 0.5em;
 }
 
-input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]
-	{
-	width: 100%;
-	border: 1px solid #ccc;
-	box-sizing: border-box;
-	margin: 0 auto;
-	padding: 5px;
-}
-.dropdown{
-	width: 50%;
-	border: 1px solid #ccc;
-	box-sizing: border-box;
-	margin: 0 auto;
-	padding: 5px;
-	border: 1px solid #ccc;
-	box-sizing: border-box;
-	border-radius: 0.375em;
-}
+@media(max-width:800px) {
+    header {
+        flex-direction: column;
+    }
 
+    #head-title {
+        justify-content: center;
+        align-items: center;
+    }
 
+    nav {
+        display: flex;
+        justify-content: space-between;
+    }
 
-.cancelbtn {
-	padding: 10px 18px;
-	background-color: #f44336;
-	visibility: hidden;
+    a {
+        font-size: 12px;
+    }
 }
 
-span.psw {
-	padding: 5px;
-	margin: 5px auto;
+/* Mahak's CSS starts */
+.form-control {
+
+    background-color: #c2bafd7d;
+}
+.successfully-saved {
+    display: none;
+    color: #1B7C18;
+    border-radius: 5px;
+    border: 2px solid #1B7C18;
+    padding: .5em .75em;
+    background: #D6F8DD;
+    width: 100%;
+    margin-top: 20px;
 }
 
-button:hover {
-	opacity: 0.8;
-	color: black;
+successfully-saved:show {
+    display: block;
 }
 
-.cancelbtn {
-	width: auto;
-	padding: 10px 18px;
-	background-color: #f44336;
-	visibility: hidden;
-}
-
-.imgcontainer {
-	text-align: center;
-	margin: 24px 0 12px 0;
-}
-
-img.avatar {
-	width: 40%;
-	border-radius: 50%;
-}
-
-.container {
-	width: 40%;
-	margin: 0 auto;
-	padding: 5px;
-}
-
-.secondContainer {
-	text-align: center;
-	width: 40%;
-	margin: 0 auto;
-}
-
-.select2-container .select2-selection--single {
-	height: 34px !important;
-}
-
-.select2-container--default .select2-selection--single {
-	border: 1px solid #ccc !important;
-	border-radius: 0px !important;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-	span.psw {
-		display: block;
-		float: none;
-	}
-	.cancelbtn {
-		width: 100%;
-	}
+.form-label{
+  font-weight: bold;
 }
