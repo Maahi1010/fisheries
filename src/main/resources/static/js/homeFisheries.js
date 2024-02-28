@@ -52,10 +52,10 @@ document.addEventListener("DOMContentLoaded", function() {
 				for (let i = 0; i < data.length; i++) {
 					let option = document.createElement("option");
 					var fatherName = 'NA';
-					if(data[i].fisherManFatherName!=null){
-					fatherName	=data[i].fisherManFatherName;
+					if (data[i].fisherManFatherName != null) {
+						fatherName = data[i].fisherManFatherName;
 					}
-					option.value = data[i].fisherManName+" ("+fatherName+")";
+					option.value = data[i].fisherManName +  `(${fatherName})`;
 					option.id = data[i].fisherManId;
 					nameList.appendChild(option);
 				}
@@ -79,68 +79,22 @@ function submitData() {
 	const selectednameId = document.getElementById("nameInput").value;
 	let fisherManId = document.querySelector(`#nameList option[value="${selectednameId}"]`).id;
 	console.log("fisherManId : " + fisherManId);
-	
-	
 
-	const jsonData = {
-		dateOfWork: document.getElementById("dateOfWork").value,
-		fisherManId: fisherManId,
-		societyId: societyId,
-		societyName: selectedSocietyId,
-		fisherManName: document.getElementById("nameInput").value,
-
-		//Major
-		katla: document.getElementById("katla").value,
-		rohu: document.getElementById("rohu").value,
-		mrigal: document.getElementById("mrigal").value,
-		totalKRM: document.getElementById("totalKRM").value,
-		katlaWt: document.getElementById("katlaWt").value,
-		rohuWt: document.getElementById("rohuWt").value,
-		mrigalWt: document.getElementById("mrigalWt").value,
-
-		otherMjrCorp: document.getElementById("otherMjrCorp").value,
-
-		otherMjrCorpWt: document.getElementById("otherMjrCorpWt").value,
-
-		totalKRMWt: document.getElementById("totalKRMWt").value,
-
-		//Local Major 
-		singhad: document.getElementById("singhad").value,
-
-		singhadWt: document.getElementById("singhadWt").value,
-
-		pabCheetSambKal: document.getElementById("pabCheetSambKal").value,
-
-		pabCheetSambKalWt: document.getElementById("pabCheetSambKalWt").value,
-
-		kalvasu: document.getElementById("kalvasu").value,
-
-		kalvasuWt: document.getElementById("kalvasuWt").value,
-
-		totalLocalMaj: document.getElementById("totalLocalMaj").value,
-
-		totalLocalMajWt: document.getElementById("totalLocalMajWt").value,
+	const loginFields = ["dateOfWork",  "nameInput",
+		"katla", "rohu", "mrigal", "totalKRM", "katlaWt", "rohuWt", "mrigalWt",
+		"otherMjrCorp", "otherMjrCorpWt", "totalKRMWt",
+		"singhad", "singhadWt", "pabCheetSambKal", "pabCheetSambKalWt",
+		"kalvasu", "kalvasuWt", "totalLocalMaj", "totalLocalMajWt",
+		"bigMinor", "bigMinorWt", "minorWt", "totalMinor", "totalMinorWt",
+		"grandTotal", "grandTotalWt"
+	];
+	const jsonData = makeJsonFromFields(loginFields);
 
 
-		//Minor
-
-		bigMinor: document.getElementById("bigMinor").value,
-
-		bigMinorWt: document.getElementById("bigMinorWt").value,
-
-		minorWt: document.getElementById("minorWt").value,
-
-		totalMinor: document.getElementById("totalMinor").value,
-
-		totalMinorWt: document.getElementById("totalMinorWt").value,
-		// Grand Total
-		grandTotal: document.getElementById("grandTotal").value,
-
-		grandTotalWt: document.getElementById("grandTotalWt").value,
-
-	};
-
-	//formData.append("dateOfWork", dateOfWork);
+	jsonData.fisherManId = fisherManId;
+	jsonData.societyId = societyId;
+	jsonData.societyName = selectedSocietyId;
+		//formData.append("dateOfWork", dateOfWork);
 
 	console.log(jsonData);
 
@@ -173,63 +127,7 @@ function openDownloadSheet() {
 	jQuery('#downloadSheetModal').modal('show');
 }
 
-function downloadSheet(e) {
-	e.preventDefault();
-	let downloadModal = document.getElementById("downloadSheetModal");
-	const selectedSocietyName = document.getElementById("societyInputDwnlModal").value;
-	//societyId = document.querySelector(`#categoryList option[value="${selectedSocietyName}"]`).id;
 
-	//let sanitizedSocietyName = encodeURIComponent(selectedSocietyName);
-	//let societyId = document.querySelector(`#categoryList option[value="${sanitizedSocietyName}"]`).id;
-	let societyId = document.querySelector(`#categoryList option[value="${selectedSocietyName}"]`).id;
-
-	console.log("selectedSocietyName:", selectedSocietyName);
-
-	console.log("societyId : " + societyId);
-
-	const jsonData = {
-		dateOfWork: document.getElementById("dateOfWorkDlwnd").value,
-		societyId: societyId,
-		societyName: selectedSocietyName
-
-	};
-
-	// Send a GET request to the JSP page
-	fetch("/home/download", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",// Set the content type to JSON
-			"Authorization": "Bearer 6Qerer"
-		},
-		body: JSON.stringify(jsonData),
-	})
-
-		.then(response => response.blob())
-		.then(blob => {
-			// Process the retrieved data
-			console.log("Details have been downloaded:");
-
-			downloadExcelFile(blob);
-
-			//var file = window.URL.createObjectURL(blob);
-			//window.location.assign(file);
-			jQuery("#downloadSheetModal").modal("hide");
-			//location.reload();
-		})
-		.catch(error => {
-			console.error("Error while downloaded details:", error);
-		});
-}
-
-function downloadExcelFile(blob) {
-	let d = new Date();
-	let fileName = document.getElementById("societyInputDwnlModal").value + "_" + d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + ".xlsx";
-
-	let a = document.createElement("a");
-	a.href = window.URL.createObjectURL(blob);
-	a.setAttribute("download", fileName);
-	a.click()
-}
 function openAddNewFisherMan() {
 	jQuery('#addNewFishManModal').modal('show');
 }
@@ -392,12 +290,20 @@ function resetData() {
 	console.log(`Date: ${dateOfWork}`);
 
 	document.getElementById('signInForm').reset();
-
-
 	document.getElementById("dateOfWork").value = dateOfWork;
 	document.getElementById("societyInput").value = selectedSocietyId;
 }
 
 
 
+function makeJsonFromFields(fields) {
+	const data = {};
+	fields.forEach(field => {
+		data[field] = getValueById(field);
+	});
+	return data;
+}
 
+function getValueById(id) {
+	return document.getElementById(id).value;
+}

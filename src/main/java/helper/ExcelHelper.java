@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 import com.fisheries.VO.FisherManDataVO;
 
 public class ExcelHelper {
-	public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+	//public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 	// static String[] HEADERs = { "Id", "Name","Father's Name", "Date", "Katla",
 	// "Rohu", "Mrigal"};
 	static String firstHeading = "Regional Manager, MP Fish Federation, Bhopal";
@@ -228,160 +228,161 @@ public class ExcelHelper {
 					row.createCell(4).setCellValue(tutorial.getKatla());
 					totalKatla = totalKatla + tutorial.getKatla();
 				} else
-					row.createCell(4).setCellValue("");
+					row.createCell(4).setCellValue("0");
 
 				if (tutorial.getKatlaWt() != null) {
 					row.createCell(5).setCellValue(tutorial.getKatlaWt());
 					totalKatlaWt = totalKatlaWt + tutorial.getKatlaWt();
 				} else
-					row.createCell(5).setCellValue("");
+					row.createCell(5).setCellValue("0");
 
 				if (tutorial.getRohu() != null) {
 					row.createCell(6).setCellValue(tutorial.getRohu());
 					totalRohu = totalRohu + tutorial.getRohu();
 				} else
-					row.createCell(6).setCellValue("");
+					row.createCell(6).setCellValue("0");
 
 				if (tutorial.getRohuWt() != null) {
 					row.createCell(7).setCellValue(tutorial.getRohuWt());
 					totalRohuWt = totalRohuWt + tutorial.getRohuWt();
 				} else
-					row.createCell(7).setCellValue("");
+					row.createCell(7).setCellValue("0");
 
 				if (tutorial.getMrigal() != null) {
 					row.createCell(8).setCellValue(tutorial.getMrigal());
 					totalMrigal = totalMrigal + tutorial.getMrigal();
 				} else
-					row.createCell(8).setCellValue("");
+					row.createCell(8).setCellValue("0");
 
 				if (tutorial.getMrigalWt() != null) {
 					row.createCell(9).setCellValue(tutorial.getMrigalWt());
 					totalMrigalWt = totalMrigalWt + tutorial.getMrigalWt();
 				} else
-					row.createCell(9).setCellValue("");
+					row.createCell(9).setCellValue("0");
 
 				if (tutorial.getOtherMjrCorp() != null) {
 					row.createCell(10).setCellValue(tutorial.getOtherMjrCorp());
 					totalOtherMaj = totalOtherMaj + tutorial.getOtherMjrCorp();
 				} else
-					row.createCell(10).setCellValue("");
+					row.createCell(10).setCellValue("0");
 
 				if (tutorial.getOtherMjrCorpWt() != null) {
 					row.createCell(11).setCellValue(tutorial.getOtherMjrCorpWt());
 					totalOtherMajWt = totalOtherMajWt + tutorial.getOtherMjrCorpWt();
 				} else
-					row.createCell(11).setCellValue("");
+					row.createCell(11).setCellValue("0");
 
 				if (tutorial.getTotalKRM() != null) {
 					row.createCell(12).setCellValue(tutorial.getTotalKRM());
 					totalKRM = totalKRM + tutorial.getTotalKRM();
 				} else
-					row.createCell(12).setCellValue("");
+					row.createCell(12).setCellValue("0");
 
 				if (tutorial.getTotalKRMWt() != null) {
 					row.createCell(13).setCellValue(tutorial.getTotalKRMWt());
 					totalKRMWt = totalKRMWt + tutorial.getTotalKRMWt();
 				} else
-					row.createCell(13).setCellValue("");
+					row.createCell(13).setCellValue("0");
 
 				if (tutorial.getSinghad() != null) {
 					row.createCell(14).setCellValue(tutorial.getSinghad());
 					totalSinghad = totalSinghad + tutorial.getSinghad();
 				} else
-					row.createCell(14).setCellValue("");
+					row.createCell(14).setCellValue("0");
 
 				if (tutorial.getSinghadWt() != null) {
 					row.createCell(15).setCellValue(tutorial.getSinghadWt());
 					totalSinghadWt = totalSinghadWt + tutorial.getSinghadWt();
 				} else
-					row.createCell(15).setCellValue("");
+					row.createCell(15).setCellValue("0");
 
 				if (tutorial.getPabCheetSambKal() != null) {
 					row.createCell(16).setCellValue(tutorial.getPabCheetSambKal());
 					totalPabCheetSambKal = totalPabCheetSambKal + tutorial.getPabCheetSambKal();
 				} else
-					row.createCell(16).setCellValue("");
+					row.createCell(16).setCellValue("0");
 
 				if (tutorial.getPabCheetSambKalWt() != null) {
 					row.createCell(17).setCellValue(tutorial.getPabCheetSambKalWt());
 					totalPabCheetSambKalWt = totalPabCheetSambKalWt + tutorial.getPabCheetSambKalWt();
 				} else
-					row.createCell(17).setCellValue("");
+					row.createCell(17).setCellValue("0");
 
 				// Kalvasu
 				if (tutorial.getKalvasu() != null) {
 					row.createCell(18).setCellValue(tutorial.getKalvasu());
 					totalKalvasu = totalKalvasu + tutorial.getKalvasu();
 				} else
-					row.createCell(18).setCellValue("");
+					row.createCell(18).setCellValue("0");
 
 				if (tutorial.getKalvasuWt() != null) {
 					row.createCell(19).setCellValue(tutorial.getKalvasuWt());
 					totalKalvasuWt = totalKalvasuWt + tutorial.getKalvasuWt();
 				} else
-					row.createCell(19).setCellValue("");
+					row.createCell(19).setCellValue("0");
 
 				// Total Local Major
 				if (tutorial.getTotalLocalMaj() != null) {
 					row.createCell(20).setCellValue(tutorial.getTotalLocalMaj());
 					totalTotalLocalMaj = totalTotalLocalMaj + tutorial.getTotalLocalMaj();
 				} else
-					row.createCell(20).setCellValue("");
+					row.createCell(20).setCellValue("0");
 
 				if (tutorial.getTotalLocalMajWt() != null) {
 					row.createCell(21).setCellValue(tutorial.getTotalLocalMajWt());
 					totalTotalLocalMajWt = totalTotalLocalMajWt + tutorial.getTotalLocalMajWt();
 				} else
-					row.createCell(21).setCellValue("");
+					row.createCell(21).setCellValue("0");
 
 				// Minor
 				if (tutorial.getBigMinor() != null) {
 					row.createCell(22).setCellValue(tutorial.getBigMinor());
 					totalBigMinor = totalBigMinor + tutorial.getBigMinor();
 				} else
-					row.createCell(22).setCellValue("");
+					row.createCell(22).setCellValue("0");
 
 				if (tutorial.getBigMinorWt() != null) {
 					row.createCell(23).setCellValue(tutorial.getBigMinorWt());
 					totalBigMinorWt = totalBigMinorWt + tutorial.getBigMinorWt();
 				} else
-					row.createCell(23).setCellValue("");
+					row.createCell(23).setCellValue("0");
 
 				if (tutorial.getMinorWt() != null) {
 					row.createCell(24).setCellValue(tutorial.getMinorWt());
 					totalMinorWt = totalMinorWt + tutorial.getMinorWt();
 				} else
-					row.createCell(24).setCellValue("");
+					row.createCell(24).setCellValue("0");
 
 				// Total Minor
 				if (tutorial.getTotalMinor() != null) {
 					row.createCell(25).setCellValue(tutorial.getTotalMinor());
 					totalTotalMinor = totalTotalMinor + tutorial.getTotalMinor();
 				} else
-					row.createCell(25).setCellValue("");
+					row.createCell(25).setCellValue("0");
 
 				if (tutorial.getTotalMinorWt() != null) {
 					row.createCell(26).setCellValue(tutorial.getTotalMinorWt());
 					totalTotalMinorWt = totalTotalMinorWt + tutorial.getTotalMinorWt();
 				} else
-					row.createCell(26).setCellValue("");
+					row.createCell(26).setCellValue("0");
 
 				// Grand Total
 				if (tutorial.getGrandTotal() != null) {
 					row.createCell(27).setCellValue(tutorial.getGrandTotal());
 					totalGrandTotal = totalGrandTotal + tutorial.getGrandTotal();
 				} else
-					row.createCell(27).setCellValue("");
+					row.createCell(27).setCellValue("0");
 
 				if (tutorial.getGrandTotalWt() != null) {
 					row.createCell(28).setCellValue(tutorial.getGrandTotalWt());
 					totalGrandTotalWt = totalGrandTotalWt + tutorial.getGrandTotalWt();
 				} else
-					row.createCell(28).setCellValue("");
+					row.createCell(28).setCellValue("0");
 
 			}
 
 			Row totalRow = sheet.createRow(rowIdx++);
+			
 			int colNum = 4;
 
 			double[] values = { totalKatla, totalKatlaWt, totalRohu, totalRohuWt, totalMrigal, totalMrigalWt,

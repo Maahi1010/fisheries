@@ -1,8 +1,10 @@
 package com.fisheries.Controller;
 
 import java.io.ByteArrayInputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -31,8 +33,10 @@ import com.fisheries.Service.FisheriesService;
 import com.fisheries.VO.FisherManDataVO;
 import com.fisheries.VO.FisherManList;
 import com.fisheries.VO.SocietyDataVO;
+import com.fisheries.VO.WeeklyReportVO;
 
 import helper.ExcelHelper;
+import helper.WeeklyReportExcel;
 
 @Controller
 @RequestMapping("/home")
@@ -138,6 +142,57 @@ public class MainController {
 		ByteArrayInputStream in = ExcelHelper.tutorialsToExcel(tutorials);
 		InputStreamResource file = new InputStreamResource(in);
 
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+				.contentType(MediaType.parseMediaType("application/vnd.ms-excel")).body(file);
+	}
+	
+	@GetMapping("/download/weekly")
+	public ResponseEntity<?> getWeeklyFile() throws ParseException {
+		String methodName = "getWeeklyFile";
+		logger.info(INMTHD + methodName + CLASS);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date currentDate = new Date();
+
+		Calendar cal = Calendar.getInstance();
+		// get starting date
+		cal.add(Calendar.DAY_OF_YEAR, -6);
+		String fromDate= sdf.format(cal.getTime());
+		
+		String toDate =  sdf.format(currentDate);
+
+		List<WeeklyReportVO> tutorials = excelRepo.findByWeek(fromDate,toDate);
+	
+		ByteArrayInputStream in = WeeklyReportExcel.tutorialsToExcel(tutorials);
+		InputStreamResource file = new InputStreamResource(in);
+		String filename = "Weekly_Report" + ".xlsx";
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+				.contentType(MediaType.parseMediaType("application/vnd.ms-excel")).body(file);
+	}
+	
+	
+	@GetMapping("/download/monthly")
+	public ResponseEntity<?> getMonthlyFile() throws ParseException {
+		String methodName = "getWeeklyFile";
+		logger.info(INMTHD + methodName + CLASS);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date currentDate = new Date();
+
+		Calendar cal = Calendar.getInstance();
+		// get starting date
+		cal.add(Calendar.DAY_OF_MONTH, -1);
+		String fromDate= sdf.format(cal.getTime());
+		
+		String toDate =  sdf.format(currentDate);
+
+		List<WeeklyReportVO> tutorials = excelRepo.findByWeek(fromDate,toDate);
+		
+		ByteArrayInputStream in = WeeklyReportExcel.tutorialsToExcel(tutorials);
+		InputStreamResource file = new InputStreamResource(in);
+		String filename = "Weekly_Report" + ".xlsx";
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
 				.contentType(MediaType.parseMediaType("application/vnd.ms-excel")).body(file);
 	}

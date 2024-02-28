@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
 <meta charset="ISO-8859-1">
 <title>Error hai shreemaan</title>
 </head>
